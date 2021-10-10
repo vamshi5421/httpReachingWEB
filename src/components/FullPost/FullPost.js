@@ -6,9 +6,11 @@ import './FullPost.css';
 class FullPost extends Component {
 
     state = {
-        loadedPost : null
+        loadedPost : null,
+        error : false
     }
 
+   
     componentDidUpdate(){
         if(this.props.id){ 
             
@@ -21,11 +23,21 @@ class FullPost extends Component {
                     console.log(response);
                     
                     return this.setState({loadedPost : response.data})   
+                }).catch(error => {
+                    console.log("something went wrong");
+                    return <div>ERROR</div>
+                    
                 })
             }
         
         }
     }
+
+    deleteHandler = () => {
+        axios.delete('https://jsonplaceholder.typicode.com/postsff/' + this.props.id).then((response) =>{
+            console.log(response);            
+        })
+    } 
 
     render () {
         
@@ -41,7 +53,7 @@ class FullPost extends Component {
                     <h1>{this.state.loadedPost.title}</h1>
                     <p>{this.state.loadedPost.body }</p>
                     <div className="Edit">
-                        <button className="Delete">Delete</button>
+                        <button className="Delete" onClick = {this.deleteHandler}>Delete</button>
                     </div>
                 </div>
     
