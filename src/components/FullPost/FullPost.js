@@ -23,10 +23,6 @@ class FullPost extends Component {
                     console.log(response);
                     
                     return this.setState({loadedPost : response.data})   
-                }).catch(error => {
-                    console.log("something went wrong");
-                    return <div>ERROR</div>
-                    
                 })
             }
         
@@ -40,7 +36,6 @@ class FullPost extends Component {
     } 
 
     render () {
-        
         
         let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
         if(this.props.id){
