@@ -1,63 +1,26 @@
 import React, { Component } from 'react';
 
-import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
+
 import './Blog.css';
-import axios from 'axios';
+import Posts from "../Blog/Posts/Posts"
 
 class Blog extends Component {
     
-    state = {
-        posts: [],
-        selectedPostId: null,
-        error :false
-    };
-
-    componentDidMount(){
-
-        axios.get('https://jsonplaceholder.typicode.com/posts').then(
-            (response) => {
-                const posts = response.data.slice(0,4);
-                const updatePosts = posts.map((post) =>{
-                    return{
-                        ...post,
-                        author : "Vamshi"
-                    }
-                })                
-                this.setState({posts : updatePosts});
-            })
-        .catch(error => {
-            console.log(error);
-            this.setState({error : true})
-        })
-    }
-
-    postSelectedHandler = (id) => {
-        this.setState({ selectedPostId: id }); 
-      };
     render () {
-        const posts = this.state.posts.map(
-            post => {
-                return <Post  
-                key ={post.id} 
-                title ={post.title}  
-                author={post.author} 
-                Clicked={() => this.postSelectedHandler(post.id)}/>
-            }
-        )
-    
         return (
-            <div>
-                <section className="Posts">
-                    {posts}
-                </section>
-                <section>
-                    <FullPost id ={this.state.selectedPostId}/>
-                </section>
-                <section>
-                    <NewPost />
-                </section>
+            <div className= "Blog">
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a href = "/">Home</a></li>
+                            <li><a href = "/new-post">New Post</a></li>
+                            
+                        </ul>
+                    </nav>
+                </header>
+                <Posts/>
+                
+                
             </div>
         );
     }
