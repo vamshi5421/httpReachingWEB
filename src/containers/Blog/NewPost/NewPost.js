@@ -9,7 +9,10 @@ class NewPost extends Component {
         content: '',
         author: 'Max'
     }
-    
+    componentDidMount(){
+        console.log(this.props);
+        
+    }
 
     pushDataToServer = () => {
         const post = {

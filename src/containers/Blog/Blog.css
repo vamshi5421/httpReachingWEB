@@ -22,3 +22,7 @@
 .Blog a:active{
     color : orange
 }
+
+.Blog a.active{
+    color : green
+}

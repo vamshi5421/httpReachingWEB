@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import './Blog.css';
 import Posts from "../Blog/Posts/Posts";
-import NewPost from "../Blog/NewPost/NewPost"  
+import NewPost from "../Blog/NewPost/NewPost";
 
 class Blog extends Component {
     
@@ -13,8 +13,19 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><Link to = "/">Home</Link></li>
-                            <li><Link to = "/new-post">New Post</Link></li>
+                            <li><NavLink to = "/" 
+                            exact 
+                            activeClassName ="home"
+                            activeStyle = {{
+                                color : "green"
+                            }
+                            }
+                            >Home</NavLink></li>
+                            <li><NavLink  to={{
+                    pathname: '/new-post',
+                    hash: '#submit', // just an example, to jump to this anchor
+                    search: '?quick-submit=true', // another example of what we can do
+                  }}>New Post</NavLink></li>
                             
                         </ul>
                     </nav>
